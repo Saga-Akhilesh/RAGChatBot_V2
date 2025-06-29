@@ -1,0 +1,9 @@
+streamlit
+faiss-cpu
+sentence-transformers
+PyMuPDF
+tqdm
+fitz
+pdfplumber
+pytesseract
+pdf2image
