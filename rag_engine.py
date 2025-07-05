@@ -1,10 +1,10 @@
 import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer
 import subprocess
+from sentence_transformers import SentenceTransformer
 
 # Load embedding model
-embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+embed_model = SentenceTransformer('all-MiniLM-L12-v2')  # Good semantic quality
 
 def chunk_text(text, chunk_size=300, overlap=50):
     text = text.strip()
@@ -43,17 +43,14 @@ def generate_answer(question, context, model_name="mistral"):
         prompt = f"Q: {question}\nA:"
 
     try:
+        # Use Ollama to call local LLM
         result = subprocess.run(
             ["ollama", "run", model_name],
             input=prompt,
             text=True,
             capture_output=True,
-            timeout=60  # Prevents hanging
+            encoding="utf-8"  # ✅ Fixes UnicodeDecodeError
         )
-
-        if result.returncode != 0:
-            return f"❌ Ollama error: {result.stderr.strip()}"
-
         return result.stdout.strip()
-    except subprocess.TimeoutExpired:
-        return "❌ Ollama timed out while generating a response."
+    except Exception as e:
+        return f"❌ Ollama error: {str(e)}"
