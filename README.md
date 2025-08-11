@@ -1,4 +1,4 @@
-# 🤖 RAG Chatbot V2 - PDF + OCR + Mistral (Ollama)
+# 🤖 RAG Chatbot 
 
 An open-source local chatbot that answers questions from PDFs (even scanned ones) and images (PNG, JPG, JPEG) using:
 
