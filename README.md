@@ -1,4 +1,4 @@
-# 🤖 RAG Chatbot 
+# 🤖 RAG bot 
 
 An open-source local chatbot that answers questions from PDFs (even scanned ones) and images (PNG, JPG, JPEG) using:
 
